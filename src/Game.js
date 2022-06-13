@@ -54,7 +54,12 @@ export class Game extends React.Component {
         'Go to game start';
       return (
         <li key={step}>
-          <button onClick={ () => this.jumpTo(step) }>{desc}</button>
+          <button
+            className={ step === this.state.stepNumber ? 'current-step' : '' }
+            onClick={ () => this.jumpTo(step) }
+          >
+            {desc}
+          </button>
         </li>
       )
     });
