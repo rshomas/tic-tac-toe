@@ -15,26 +15,28 @@ export class Game extends React.Component {
   }
   
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      history: history.concat([{
-        squares: squares,
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    })
+    this.setState((state) => {
+      const history = state.history.slice(0, this.state.stepNumber + 1);
+      const current = history[history.length - 1];
+      const squares = current.squares.slice();
+      if (calculateWinner(squares) || squares[i]) {
+        return;
+      }
+      squares[i] = state.xIsNext ? 'X' : 'O';
+      return ({
+        history: history.concat([{
+          squares: squares,
+        }]),
+        stepNumber: history.length,
+        xIsNext: !state.xIsNext,
+      });
+    });
   }
 
   handleSort() {
-    this.setState({
-      ascendingSort: !this.state.ascendingSort,
-    });
+    this.setState((state) => ({
+      ascendingSort: !state.ascendingSort,
+    }));
   }
 
   jumpTo(step) {
