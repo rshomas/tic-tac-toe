@@ -10,6 +10,7 @@ export class Game extends React.Component {
       }],
       stepNumber: 0,
       xIsNext: true,
+      ascendingSort: true,
     }
   }
   
@@ -28,6 +29,12 @@ export class Game extends React.Component {
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
     })
+  }
+
+  handleSort() {
+    this.setState({
+      ascendingSort: !this.state.ascendingSort,
+    });
   }
 
   jumpTo(step) {
@@ -82,7 +89,10 @@ export class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{ status }</div>
-          <ol>{ moves }</ol>
+          <button onClick={ () => this.handleSort() }>
+            { this.state.ascendingSort ? 'Ascending' : 'Descending' }
+          </button>
+          <ol>{ this.state.ascendingSort ? moves : moves.reverse() }</ol>
         </div>
       </div>
     );
