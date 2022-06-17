@@ -20,12 +20,12 @@ export class Board extends React.Component {
       }
       rows.push(
       <div className="board-row">
-        {cols}
+        { cols }
       </div>);
     }
     return (
       <div>
-        {rows}
+        { rows }
       </div>
     );
 

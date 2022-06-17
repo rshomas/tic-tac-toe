@@ -89,7 +89,8 @@ export class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{ status }</div>
-          <button onClick={ () => this.handleSort() }>
+          <button
+            onClick={ () => this.handleSort() }>
             { this.state.ascendingSort ? 'Ascending' : 'Descending' }
           </button>
           <ol>{ this.state.ascendingSort ? moves : moves.reverse() }</ol>
